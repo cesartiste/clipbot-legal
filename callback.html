@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clip Bot - Autorisation</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:60px auto;padding:0 20px;line-height:1.6}
+code{background:#f4f4f4;padding:12px;display:block;word-break:break-all;border-radius:6px;font-size:15px}
+.err{color:#b00}</style></head>
+<body><h1>Autorisation TikTok</h1><div id="out">Lecture du code...</div>
+<script>
+var p = new URLSearchParams(location.search);
+var code = p.get('code'), err = p.get('error');
+var o = document.getElementById('out');
+if (code) {
+  o.innerHTML = "<p>Copie ce code et colle-le dans le script :</p><code id='c'>" + code +
+    "</code><p><button onclick=\"navigator.clipboard.writeText(document.getElementById('c').textContent)\">Copier</button></p>";
+} else if (err) {
+  o.innerHTML = "<p class='err'>Erreur : " + err + " - " + (p.get('error_description')||'') + "</p>";
+} else {
+  o.innerHTML = "<p>Aucun code dans l'URL. Cette page est la destination de redirection OAuth de Clip Bot.</p>";
+}
+</script></body></html>
